@@ -1,0 +1,122 @@
+void CMapData::ShiftMapData(char cDir)
+{
+	int ix, iy;
+	for (iy = 0; iy < MAPDATASIZEY; iy++)
+	for (ix = 0; ix < MAPDATASIZEX; ix++)
+		m_pTmpData[ix][iy].Clear();
+
+	switch (cDir) {
+	case 1:
+		for (iy = 0; iy < 25; iy++)
+		for (ix = 0; ix < 35; ix++)
+			memcpy(&m_pTmpData[4+5-8+ix][6+5-5+iy], &m_pData[4+5-8+ix][5+5-5+iy], sizeof(class CTile));
+		m_sPivotY--;
+		break;
+	case 2:
+		for (iy = 0; iy < 25; iy++)
+		for (ix = 0; ix < 34; ix++)
+			memcpy(&m_pTmpData[4+5-8+ix][6+5-5+iy], &m_pData[5+5-8+ix][5+5-5+iy], sizeof(class CTile));
+		m_sPivotX++;
+		m_sPivotY--;
+		break;
+	case 3:
+		for (iy = 0; iy < 26; iy++)
+		for (ix = 0; ix < 35; ix++)
+			memcpy(&m_pTmpData[4+5-8+ix][5+5-5+iy], &m_pData[5+5-8+ix][5+5-5+iy], sizeof(class CTile));
+		m_sPivotX++;
+		break;
+	case 4:
+		for (iy = 0; iy < 25; iy++)
+		for (ix = 0; ix < 34; ix++)
+			memcpy(&m_pTmpData[4+5-8+ix][5+5-5+iy], &m_pData[5+5-8+ix][6+5-5+iy], sizeof(class CTile));
+		m_sPivotX++;
+		m_sPivotY++;
+		break;
+	case 5:
+		for (iy = 0; iy < 25; iy++)
+		for (ix = 0; ix < 35; ix++)
+			memcpy(&m_pTmpData[4+5-8+ix][5+5-5+iy], &m_pData[4+5-8+ix][6+5-5+iy], sizeof(class CTile));
+		m_sPivotY++;
+		break;
+	case 6:
+		for (iy = 0; iy < 25; iy++)
+		for (ix = 0; ix < 34; ix++)
+			memcpy(&m_pTmpData[5+5-8+ix][5+5-5+iy], &m_pData[4+5-8+ix][6+5-5+iy], sizeof(class CTile));
+		m_sPivotX--;
+		m_sPivotY++;
+		break;
+	case 7:
+		for (iy = 0; iy < 26; iy++)
+		for (ix = 0; ix < 34; ix++)
+			memcpy(&m_pTmpData[5+5-8+ix][5+5-5+iy], &m_pData[4+5-8+ix][5+5-5+iy], sizeof(class CTile));
+		m_sPivotX--;
+		break;
+	case 8:
+		for (iy = 0; iy < 25; iy++)
+		for (ix = 0; ix < 35; ix++)
+			memcpy(&m_pTmpData[5+5-8+ix][6+5-5+iy], &m_pData[4+5-8+ix][5+5-5+iy], sizeof(class CTile));
+		m_sPivotX--;
+		m_sPivotY--;
+		break;
+	}
+	memcpy(&m_pData[0][0], &m_pTmpData[0][0], sizeof(m_pData));
+}
+ //este es
+BOOL CMapData::bGetIsLocateable(short sX, short sY)
+{
+	int dX, dY;
+	
+	if ((sX < m_sPivotX) || (sX > m_sPivotX + MAPDATASIZEX) ||
+		(sY < m_sPivotY) || (sY > m_sPivotY + MAPDATASIZEY)) 
+		return FALSE;
+	
+	dX = sX - m_sPivotX;
+	dY = sY - m_sPivotY;
+	
+	if (m_pData[dX][dY].m_sOwnerType != NULL) return FALSE;
+	if (m_tile[sX][sY].m_bIsMoveAllowed == FALSE) return FALSE;
+	if (m_pData[dX][dY].m_sDynamicObjectType == DYNAMICOBJECT_MINERAL1) return FALSE;
+	if (m_pData[dX][dY].m_sDynamicObjectType == DYNAMICOBJECT_MINERAL2) return FALSE;
+	
+	if (Get(dX + 1, dY + 1).m_sOwnerType == 66) return FALSE;
+	if (Get(dX + 1, dY).m_sOwnerType == 66) return FALSE;
+	if ((dY > 0) && (Get(dX + 1, dY - 1).m_sOwnerType == 66)) return FALSE;
+	if (Get(dX, dY + 1).m_sOwnerType == 66) return FALSE;
+	if (Get(dX, dY).m_sOwnerType == 66) return FALSE;
+	if ((dY > 0) && (Get(dX, dY - 1).m_sOwnerType == 66)) return FALSE;
+	if ((dX > 0) && (Get(dX - 1, dY + 1).m_sOwnerType == 66)) return FALSE;
+	if ((dX > 0) && (Get(dX - 1, dY).m_sOwnerType == 66)) return FALSE;
+	if ((dX > 0) && (dY > 0) && (Get(dX - 1, dY - 1).m_sOwnerType == 66)) return FALSE;
+
+	if (Get(dX + 1, dY + 1).m_sOwnerType == 73) return FALSE;
+	if (Get(dX + 1, dY).m_sOwnerType == 73) return FALSE;
+	if ((dY > 0) && (Get(dX + 1, dY - 1).m_sOwnerType == 73)) return FALSE;
+	if (Get(dX, dY + 1).m_sOwnerType == 73) return FALSE;
+	if (Get(dX, dY).m_sOwnerType == 73) return FALSE;
+	if ((dY > 0) && (Get(dX, dY - 1).m_sOwnerType == 73)) return FALSE;
+	if ((dX > 0) && (Get(dX - 1, dY + 1).m_sOwnerType == 73)) return FALSE;
+	if ((dX > 0) && (Get(dX - 1, dY).m_sOwnerType == 73)) return FALSE;
+	if ((dX > 0) && (dY > 0) && (Get(dX - 1, dY - 1).m_sOwnerType == 73)) return FALSE;
+
+	if (Get(dX + 1, dY + 1).m_sOwnerType == 81) return FALSE;
+	if (Get(dX + 1, dY).m_sOwnerType == 81) return FALSE;
+	if ((dY > 0) && (Get(dX + 1, dY - 1).m_sOwnerType == 81)) return FALSE;
+	if (Get(dX, dY + 1).m_sOwnerType == 81) return FALSE;
+	if (Get(dX, dY).m_sOwnerType == 81) return FALSE;
+	if ((dY > 0) && (Get(dX, dY - 1).m_sOwnerType == 81)) return FALSE;
+	if ((dX > 0) && (Get(dX - 1, dY + 1).m_sOwnerType == 81)) return FALSE;
+	if ((dX > 0) && (Get(dX - 1, dY).m_sOwnerType == 81)) return FALSE;
+	if ((dX > 0) && (dY > 0) && (Get(dX - 1, dY - 1).m_sOwnerType == 81)) return FALSE;
+
+	if (Get(dX + 1, dY + 1).m_sOwnerType == 91) return FALSE;
+	if (Get(dX + 1, dY).m_sOwnerType == 91) return FALSE;
+	if ((dY > 0) && (Get(dX + 1, dY - 1).m_sOwnerType == 91)) return FALSE;
+	if (Get(dX, dY + 1).m_sOwnerType == 91) return FALSE;
+	if (Get(dX, dY).m_sOwnerType == 91) return FALSE;
+	if ((dY > 0) && (Get(dX, dY - 1).m_sOwnerType == 91)) return FALSE;
+	if ((dX > 0) && (Get(dX - 1, dY + 1).m_sOwnerType == 91)) return FALSE;
+	if ((dX > 0) && (Get(dX - 1, dY).m_sOwnerType == 91)) return FALSE;
+	if ((dX > 0) && (dY > 0) && (Get(dX - 1, dY - 1).m_sOwnerType == 91)) return FALSE;
+
+	return TRUE;
+}
