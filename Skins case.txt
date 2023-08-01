@@ -1,0 +1,130 @@
+case EQUIPPOS_NECKTWO:
+		if (clc->itemlist->m_sIDnum == 3182)// xelimaskin
+		{
+			clc->m_sAppr4 = clc->m_sAppr4 | 0x0014; //14 aura de activacion todo el tiempo 24 merien 34 xelima
+		}
+		if (clc->itemlist->m_sIDnum == 3183)// merienskin
+		{
+			clc->m_sAppr4 = clc->m_sAppr4 | 0x0024; //14 aura de activacion todo el tiempo 24 merien 34 xelima
+
+		}
+		if (clc->itemlist->m_sIDnum == 3185)// IceSkin
+		{
+			clc->m_sAppr4 = clc->m_sAppr4 | 0x0004;
+		}
+		if (clc->itemlist->m_sIDnum == 3186) // MeduSkin
+		{
+			clc->m_sAppr4 = clc->m_sAppr4 | 0x0008;
+		}
+		if (clc->itemlist->m_sIDnum == 3184)// XSkin 
+		{
+			clc->m_sAppr4 = clc->m_sAppr4 | 0x000C;
+		}
+		if (clc->itemlist->m_sIDnum == 3187)// warrior skin
+		{
+			clc->m_cMagicEffectStatus[MAGICTYPE_METAMORPHOSIS] = 1;
+			clc->m_cMagicEffectStatus[MAGICTYPE_METAMORPHOSIS_WEAPONTYPE] = 4;
+			SetMetamorphosisFlag(iClientH, OWNERTYPE_PLAYER, TRUE);
+			if (m_pClientList[iClientH]->iVIP != 0)
+			{
+				SetHeroFlag(iClientH, OWNERTYPE_PLAYER, TRUE);
+			}
+		}
+		if (clc->itemlist->m_sIDnum == 3188)// mage skin
+		{
+			clc->m_cMagicEffectStatus[MAGICTYPE_METAMORPHOSIS] = 2;
+			clc->m_cMagicEffectStatus[MAGICTYPE_METAMORPHOSIS_WEAPONTYPE] = 3;
+			SetMetamorphosisMageFlag(iClientH, OWNERTYPE_PLAYER, TRUE);
+			if (m_pClientList[iClientH]->iVIP != 0)
+			{
+				SetHeroFlag(iClientH, OWNERTYPE_PLAYER, TRUE);
+			}
+		}
+		if (clc->itemlist->m_sIDnum == 3189)// warrior skin
+		{
+			clc->m_cMagicEffectStatus[MAGICTYPE_METAMORPHOSIS] = 1;
+			clc->m_cMagicEffectStatus[MAGICTYPE_METAMORPHOSIS_WEAPONTYPE] = 3;
+			SetMetamorphosisFlag(iClientH, OWNERTYPE_PLAYER, TRUE);
+			if (m_pClientList[iClientH]->iVIP != 0)
+			{
+				SetHeroFlag(iClientH, OWNERTYPE_PLAYER, TRUE);
+			}
+
+		}
+		if (clc->itemlist->m_sIDnum == 3191)// battle mage skin
+		{
+			clc->m_cMagicEffectStatus[MAGICTYPE_METAMORPHOSIS] = 1;
+			if (m_pClientList[iClientH]->m_cSex == 1)
+			{
+				clc->m_cMagicEffectStatus[MAGICTYPE_METAMORPHOSIS_WEAPONTYPE] = 2;
+			}
+			else
+			{
+				clc->m_cMagicEffectStatus[MAGICTYPE_METAMORPHOSIS_WEAPONTYPE] = 1;
+			}
+			SetBattleMageFlag(iClientH, OWNERTYPE_PLAYER, TRUE);
+			if (m_pClientList[iClientH]->iVIP != 0)
+			{
+				SetHeroFlag(iClientH, OWNERTYPE_PLAYER, TRUE);
+			}
+
+		}
+
+		if (clc->itemlist->m_sIDnum == 3192)// bishop mage skin
+		{
+			clc->m_cMagicEffectStatus[MAGICTYPE_METAMORPHOSIS] = 1;
+			if (m_pClientList[iClientH]->m_cSex == 1)
+			{
+				clc->m_cMagicEffectStatus[MAGICTYPE_METAMORPHOSIS_WEAPONTYPE] = 2;
+			}
+			else
+			{
+				clc->m_cMagicEffectStatus[MAGICTYPE_METAMORPHOSIS_WEAPONTYPE] = 1;
+			}
+			SetBishopMageFlag(iClientH, OWNERTYPE_PLAYER, TRUE);
+			if (m_pClientList[iClientH]->iVIP != 0)
+			{
+				SetHeroFlag(iClientH, OWNERTYPE_PLAYER, TRUE);
+			}
+
+		}
+		if (clc->itemlist->m_sIDnum == 3193)// bishop war skin
+		{
+			clc->m_cMagicEffectStatus[MAGICTYPE_METAMORPHOSIS] = 1;
+			if (m_pClientList[iClientH]->m_cSex == 1)
+			{
+				clc->m_cMagicEffectStatus[MAGICTYPE_METAMORPHOSIS_WEAPONTYPE] = 2;
+			}
+			else
+			{
+				clc->m_cMagicEffectStatus[MAGICTYPE_METAMORPHOSIS_WEAPONTYPE] = 1;
+			}
+			SetBishopWarFlag(iClientH, OWNERTYPE_PLAYER, TRUE);
+			if (m_pClientList[iClientH]->iVIP != 0)
+			{
+				SetHeroFlag(iClientH, OWNERTYPE_PLAYER, TRUE);
+			}
+
+		}
+		if (clc->itemlist->m_sIDnum == 3200)// bishop war skin
+		{
+			clc->m_cMagicEffectStatus[MAGICTYPE_METAMORPHOSIS] = 1;
+			if (m_pClientList[iClientH]->m_cSex == 1)
+			{
+				clc->m_cMagicEffectStatus[MAGICTYPE_METAMORPHOSIS_WEAPONTYPE] = 2;
+			}
+			else
+			{
+				clc->m_cMagicEffectStatus[MAGICTYPE_METAMORPHOSIS_WEAPONTYPE] = 1;
+			}
+			SetThorWarFlag(iClientH, OWNERTYPE_PLAYER, TRUE);
+			if (m_pClientList[iClientH]->iVIP != 0)
+			{
+				SetHeroFlag(iClientH, OWNERTYPE_PLAYER, TRUE);
+			}
+
+		}
+
+
+		break;
+}
