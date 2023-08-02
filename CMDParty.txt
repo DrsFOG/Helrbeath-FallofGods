@@ -1,0 +1,106 @@
+	// command voice
+		if (memcmp(cp, "/partyhelp", 10) == 0) {
+			if (clc->m_iPartyID != NULL)
+			{
+				for (int i = 0; i < MAXCLIENTS; i++){
+					if (cli != NULL){
+						if (cli->m_iPartyID == clc->m_iPartyID)
+						{
+							wsprintf(G_cTxt, "%s:Help on %s Map Coords:%d,%d", clc->m_cCharName, clc->m_cMapName, clc->m_sX, clc->m_sY);
+							ShowClientMsg(i, G_cTxt);
+							if (clc->m_cSex == 1)
+							{
+								SendNotifyMsg(NULL, i, NOTIFY_PARTYHELP, NULL, NULL, NULL, NULL);
+							}
+							else
+							{
+								SendNotifyMsg(NULL, i, NOTIFY_PARTYHELPW, NULL, NULL, NULL, NULL);
+							}
+							//SendNotifyMsg(NULL, iClientH, NOTIFY_NOTICEMSG, 0, 0, 0, G_cTxt);
+						}
+					}
+
+				}
+			}
+			return;
+		}
+		if (memcmp(cp, "/partyenemy", 11) == 0) {
+			if (clc->m_iPartyID != NULL)
+			{
+				for (int i = 0; i < MAXCLIENTS; i++){
+					if (cli != NULL){
+						if (cli->m_iPartyID == clc->m_iPartyID)
+						{
+							wsprintf(G_cTxt, "%s:Enemy on %s Map Coords:%d,%d", clc->m_cCharName, clc->m_cMapName, clc->m_sX, clc->m_sY);
+							ShowClientMsg(i, G_cTxt);
+							if (clc->m_cSex == 1)
+							{
+								SendNotifyMsg(NULL, i, NOTIFY_PARTYENEMY, NULL, NULL, NULL, NULL);
+								//SendNotifyMsg(NULL, iClientH, NOTIFY_NOTICEMSG, 0, 0, 0, G_cTxt);
+							}
+							else
+							{
+								SendNotifyMsg(NULL, i, NOTIFY_PARTYENEMYW, NULL, NULL, NULL, NULL);
+							}
+						}
+					}
+
+				}
+			}
+			return;
+		}
+
+if (memcmp(cp, "/followme", 9) == 0) {
+			if (clc->m_iPartyID != NULL)
+			{
+				for (int i = 0; i < MAXCLIENTS; i++){
+					if (cli != NULL){
+						if (cli->m_iPartyID == clc->m_iPartyID)
+						{
+							wsprintf(G_cTxt, "%s:Follow on %s Map Coords:%d,%d", clc->m_cCharName, clc->m_cMapName, clc->m_sX, clc->m_sY);
+							ShowClientMsg(i, G_cTxt);
+							if (clc->m_cSex == 1)
+							{
+								
+								SendNotifyMsg(NULL, i, NOTIFY_PARTYFOLLOW, NULL, NULL, NULL, NULL);
+								//SendNotifyMsg(NULL, iClientH, NOTIFY_NOTICEMSG, 0, 0, 0, G_cTxt);
+							}
+							else
+							{
+								SendNotifyMsg(NULL, i, NOTIFY_PARTYFOLLOWW, NULL, NULL, NULL, NULL);
+							}
+						}
+					}
+
+				}
+			}
+			return;
+		}
+		if (memcmp(cp, "/igetout", 8) == 0) {
+			if (clc->m_iPartyID != NULL)
+			{
+				for (int i = 0; i < MAXCLIENTS; i++){
+					if (cli != NULL){
+						if (cli->m_iPartyID == clc->m_iPartyID)
+						{
+							wsprintf(G_cTxt, "%s:I out on %s Map Coords:%d,%d", clc->m_cCharName, clc->m_cMapName, clc->m_sX, clc->m_sY);
+							ShowClientMsg(i, G_cTxt);
+							if (clc->m_cSex == 1)
+							{
+								SendNotifyMsg(NULL, i, NOTIFY_PARTYGETOUT, NULL, NULL, NULL, NULL);
+								//SendNotifyMsg(NULL, iClientH, NOTIFY_NOTICEMSG, 0, 0, 0, G_cTxt);
+							}
+							else
+							{
+								SendNotifyMsg(NULL, i, NOTIFY_PARTYGETOUTW, NULL, NULL, NULL, NULL);
+							}
+						}
+					}
+
+				}
+			}
+			return;
+		}
+
+
+
